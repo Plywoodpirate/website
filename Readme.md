@@ -109,7 +109,7 @@ your setup.
 
 First of all: Thank you very kindly for your interest in contributing to our code!
 
-Please take a moment and read [CONTRIBUTING.md](Contributing.md) to get you started!
+Please take a moment and read [CONTRIBUTING.md](CONTRIBUTING.md) to get you started!
 
 ## Code of Conduct
 
