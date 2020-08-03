@@ -28,8 +28,40 @@ It will provide you with a full development environment:
 
 ### Prepare to start
 
-Clone this repository into your file. Then customize the composer file as you
-need it.
+Before you can start, you might need to add an `.env` file in the project root. 
+You `.env` file can set any environment variables for your project.
+
+Please consult the [wiki](wiki) for a detailed example of an .env file for TYPO3 projects.
+
+#### Prepare your docker to run the containers
+
+If your host machine is running Windows or Mac, ignore this step. This is for
+Linux only.
+
+If you run Linux on your host machine, please include your user id and group id
+inside of the `.env` file. Otherwise you may run into file permission problems.
+Example (if your user id and group id are both 1000):
+
+```bash
+USERID=1000
+GROUPID=1000
+```
+
+Please consult the [wiki](wiki) for more details.
+
+#### Setup your MariaDB database
+
+Enter these variables in your .env file to setup your mariadb database.
+If you don't use TYPO3, you still need them to configure your docker container.
+
+- **MariaDB Database:** TYPO3__DB__Connections__Default__dbname
+- **MariaDB User:** TYPO3__DB__Connections__Default__user
+- **MariaDB Password:** TYPO3__DB__Connections__Default__password
+
+#### Further information
+
+There are more options (optional) to configure in your `.env` file.
+Please consult the [wiki](wiki) for further or more defailed information. 
 
 ### How to run
 
@@ -45,7 +77,8 @@ Then install your composer.json file with
 composer install
 ```
 
-Now you are ready to develop your website!
+If your docker container started successfully, you can access your website
+at [localhost](localhost).
 
 ## Customize
 
@@ -54,19 +87,22 @@ To customize your website setup you can edit the `composer.json` file.
 If you want to customize your server settings, you may customize the `Dockerfile`
 or the `docker-compose.yml`.
 
+Please check out our [wiki](wiki) for more information about how to customize
+your setup.
+
 ## Built With
 
 * [composer](http://lxml.de/) \
   *is a tool for dependency management in PHP.*
-* [docker](https://getcomposer.org/)\
+* [docker](https://getcomposer.org/) \
   *is a tool to build and share containerized apps*
-* [Apache 2.4](https://httpd.apache.org/)\
+* [Apache 2.4](https://httpd.apache.org/) \
   *is a free and open-source cross-platform web server software*
-* [PHP 7.4](https://www.php.net/)\
+* [PHP 7.4](https://www.php.net/) \
   *is a popular general-purpose scripting language.*
-* [MariaDB 10.1](https://mariadb.org/)\
+* [MariaDB 10.1](https://mariadb.org/) \
   *is one of the most popular open source relational databases*
-* [Mailcatcher](https://mailcatcher.me/)\
+* [Mailcatcher](https://mailcatcher.me/) \
   *catches mail and serves it through a dream*
 
 ## Contributing
@@ -74,6 +110,11 @@ or the `docker-compose.yml`.
 First of all: Thank you very kindly for your interest in contributing to our code!
 
 Please take a moment and read [CONTRIBUTING.md](Contributing.md) to get you started!
+
+## Code of Conduct
+
+Everyone interacting in the ProjectSetup project's codebases, issue trackers, chat rooms, and mailing lists 
+is expected to follow the [Code of Conduct][code_of_conduct].
 
 ## Versioning
 
@@ -88,12 +129,8 @@ We thank all of our [contributors][github-contributors], who participated in thi
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE.md) file for details
+This project is licensed under the [Apache 2.0 License](LICENSE.md).
 
-## Code of Conduct
-
-Everyone interacting in the ProjectSetup project's codebases, issue trackers, chat rooms, and mailing lists 
-is expected to follow the [Code of Conduct][code_of_conduct].
 
 [github]: https://github.com/michagrandel
 [github-releases]: https://github.com/michagrandel/website-setup/releases
