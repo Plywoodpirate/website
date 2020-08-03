@@ -1,0 +1,1 @@
+*/5  *  * * *  TYPO3_CONTEXT=Development /var/www/html/web/typo3/cli_dispatch.phpsh scheduler > /dev/null 2>&1

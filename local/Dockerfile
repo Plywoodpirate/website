@@ -1,0 +1,81 @@
+FROM php:7.4-apache
+
+# to fix permissions (e.g. on Linux host machines),
+# use USERID and GROUPID environment variables
+ARG USERID=0
+ARG GROUPID=0
+
+# adjust this according to your linux distribution of choice
+ARG PHP_INI_DIR=/usr/local/etc/php
+
+# configure pecl php.ini directory
+RUN pecl config-set php_ini "${PHP_INI_DIR}/php.ini"
+
+# update and install basic stuff
+RUN apt-get update \
+    && apt-get install -y \
+        libzip-dev \
+        zip \
+        libxml2-dev \
+        libmcrypt-dev \
+        imagemagick \
+        graphicsmagick \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
+        libmagickwand-6.q16-dev \
+        # install dependencies for mcrypt
+        gcc \
+        make \
+        autoconf \
+        libc-dev \
+        pkg-config \
+        # install mcrypt
+        libmcrypt-dev \
+        # install texteditor
+        vim \
+        libonig-dev
+
+# install php extensions
+RUN docker-php-ext-configure zip \
+    && docker-php-ext-install \
+        pdo \
+        pdo_mysql \
+        mysqli \
+        soap \
+        iconv \
+        mbstring \
+        bcmath \
+        zip
+
+# install imagick
+RUN ln -s /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16/MagickWand-config /usr/bin/ \
+    && pecl install imagick \
+    # echo "extension=imagick.so" > /usr/local/etc/php/conf.d/ext-imagick.ini \
+    && docker-php-ext-enable imagick \
+    && rm -rf /var/lib/apt/lists/*
+
+# install gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && rm -rf /var/lib/apt/lists/*
+
+# install pecl extensions
+RUN pecl install mcrypt-1.0.3 \
+    && docker-php-ext-enable mcrypt
+
+# enable some apache2 modules
+RUN a2enmod rewrite \
+    && a2enmod setenvif \
+    && a2enmod headers
+
+# enable ssl
+RUN a2ensite default-ssl
+
+## adjust user permissions (expecially on Linux host machines)
+RUN if [ ! "${USERID}" = "0" ] || [ ! "${USERID}" = "" ] ;\
+    then \
+        usermod --non-unique --uid ${USERID} www-data && \
+        groupmod --non-unique --gid ${GROUPID} www-data && \
+        chown -R www-data:www-data /var/www ; \
+    fi
