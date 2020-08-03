@@ -113,7 +113,7 @@ Please take a moment and read [CONTRIBUTING.md](CONTRIBUTING.md) to get you star
 
 ## Code of Conduct
 
-Everyone interacting in the ProjectSetup project's codebases, issue trackers, chat rooms, and mailing lists 
+Everyone interacting in this project's codebases, issue trackers, chat rooms, and mailing lists 
 is expected to follow the [Code of Conduct][code_of_conduct].
 
 ## Versioning
