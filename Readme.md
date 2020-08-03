@@ -3,7 +3,6 @@
 ![License](https://img.shields.io/github/license/michagrandel/website-setup)
 ![Version](https://img.shields.io/github/v/release/michagrandel/website-setup)
 ![Language](https://img.shields.io/github/languages/top/michagrandel/website-setup)
-![GitHub release](https://img.shields.io/github/release/michagrandel/website-setup.svg)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
 Bootstrap package for website projects
@@ -61,13 +60,13 @@ or the `docker-compose.yml`.
   *is a tool for dependency management in PHP.*
 * [docker](https://getcomposer.org/)\
   *is a tool to build and share containerized apps*
-* [Apache 2.4](https://httpd.apache.org/)
+* [Apache 2.4](https://httpd.apache.org/)\
   *is a free and open-source cross-platform web server software*
-* [PHP 7.4](https://www.php.net/)
+* [PHP 7.4](https://www.php.net/)\
   *is a popular general-purpose scripting language.*
-* [MariaDB 10.1](https://mariadb.org/)
+* [MariaDB 10.1](https://mariadb.org/)\
   *is one of the most popular open source relational databases*
-* [Mailcatcher](https://mailcatcher.me/)
+* [Mailcatcher](https://mailcatcher.me/)\
   *catches mail and serves it through a dream*
 
 ## Contributing
