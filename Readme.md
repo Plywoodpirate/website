@@ -21,7 +21,7 @@ It will provide you with a full development environment:
     * Contributing.md
     * CODE_OF_CONDUCT.md
     * issue_template.md
-    * PULL_REQUEST_TEMPALTE.md
+    * PULL_REQUEST_TEMPLATE.md
 * add important project files like **LICENSE**
 
 ## Getting Started
@@ -88,7 +88,7 @@ We thank all of our [contributors][github-contributors], who participated in thi
 
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE.md) file for details
 
 ## Code of Conduct
 
