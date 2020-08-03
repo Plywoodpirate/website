@@ -9,7 +9,7 @@ Bootstrap package for website projects
 
 ## Features
 
-This project will help you to start your website project very quick.
+This project will help you to start your website project very quickly.
 
 It will provide you with a full development environment:
 
