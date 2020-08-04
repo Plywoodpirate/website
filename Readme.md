@@ -31,7 +31,7 @@ It will provide you with a full development environment:
 Before you can start, you might need to add an `.env` file in the project root. 
 You `.env` file can set any environment variables for your project.
 
-Please consult the [wiki](../../wiki/getting-started/env) for a detailed example
+Please consult the [wiki](../../wiki/Getting-started) for a detailed example
 of an .env file for TYPO3 projects.
 
 #### Prepare your docker to run the containers
@@ -48,7 +48,7 @@ USERID=1000
 GROUPID=1000
 ```
 
-Please consult the [wiki](../../wiki/getting-started/env) for more details.
+Please consult the [wiki](../../wiki/Getting-started) for more details.
 
 #### Setup your MariaDB database
 
@@ -62,7 +62,7 @@ If you don't use TYPO3, you still need them to configure your docker container.
 #### Further information
 
 There are more options (optional) to configure in your `.env` file.
-Please consult the [wiki](../../wiki/getting-started/env) for further or 
+Please consult the [wiki](../../wiki/Getting-started) for further or 
 more defailed information. 
 
 ### How to run
@@ -89,7 +89,7 @@ To customize your website setup you can edit the `composer.json` file.
 If you want to customize your server settings, you may customize the `Dockerfile`
 or the `docker-compose.yml`.
 
-Please check out our [wiki](../../wiki/getting-started/customize) for more 
+Please check out our [wiki](../../wiki/Getting-started) for more 
 information about how to customize your setup.
 
 ## Built With
