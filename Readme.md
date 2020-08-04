@@ -31,7 +31,7 @@ It will provide you with a full development environment:
 Before you can start, you might need to add an `.env` file in the project root. 
 You `.env` file can set any environment variables for your project.
 
-Please consult the [wiki](wiki/Home) for a detailed example of an .env file for TYPO3 projects.
+Please consult the [wiki](../../wiki/Home) for a detailed example of an .env file for TYPO3 projects.
 
 #### Prepare your docker to run the containers
 
