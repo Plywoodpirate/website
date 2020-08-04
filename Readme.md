@@ -31,7 +31,8 @@ It will provide you with a full development environment:
 Before you can start, you might need to add an `.env` file in the project root. 
 You `.env` file can set any environment variables for your project.
 
-Please consult the [wiki](../../wiki/Home) for a detailed example of an .env file for TYPO3 projects.
+Please consult the [wiki](../../wiki/getting-started/env) for a detailed example
+of an .env file for TYPO3 projects.
 
 #### Prepare your docker to run the containers
 
@@ -47,7 +48,7 @@ USERID=1000
 GROUPID=1000
 ```
 
-Please consult the [wiki](wiki) for more details.
+Please consult the [wiki](../../wiki/getting-started/env) for more details.
 
 #### Setup your MariaDB database
 
@@ -61,7 +62,8 @@ If you don't use TYPO3, you still need them to configure your docker container.
 #### Further information
 
 There are more options (optional) to configure in your `.env` file.
-Please consult the [wiki](wiki) for further or more defailed information. 
+Please consult the [wiki](../../wiki/getting-started/env) for further or 
+more defailed information. 
 
 ### How to run
 
@@ -87,8 +89,8 @@ To customize your website setup you can edit the `composer.json` file.
 If you want to customize your server settings, you may customize the `Dockerfile`
 or the `docker-compose.yml`.
 
-Please check out our [wiki](wiki) for more information about how to customize
-your setup.
+Please check out our [wiki](../../wiki/getting-started/customize) for more 
+information about how to customize your setup.
 
 ## Built With
 
@@ -137,5 +139,4 @@ This project is licensed under the [Apache 2.0 License](LICENSE.md).
 [github-contributors]: https://github.com/michagrandel/website-setup/graphs/contributors
 [gitflow]: https://danielkummer.github.io/git-flow-cheatsheet/
 [gitflow-model]: http://nvie.com/posts/a-successful-git-branching-model/
-[wiki]: https://github.com/michagrandel/website-setup/wiki
 [code_of_conduct]: CODE_OF_CONDUCT.md
