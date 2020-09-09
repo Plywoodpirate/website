@@ -1,5 +1,10 @@
 FROM php:7.4-apache
 
+# to fix permissions (e.g. on Linux host machines),
+# use USERID and GROUPID environment variables
+ARG USERID=0
+ARG GROUPID=0
+
 # adjust this according to your linux distribution of choice
 ARG PHP_INI_DIR=/usr/local/etc/php
 
@@ -50,16 +55,16 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/ImageMagick-6.8.9/bin-Q16/MagickWand-config 
     && docker-php-ext-enable imagick \
     && rm -rf /var/lib/apt/lists/*
 
-# install gd
+## install gd
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
     && rm -rf /var/lib/apt/lists/*
 
-# install pecl extensions
-RUN pecl install mcrypt-1.0.1 \
+## install pecl extensions
+RUN pecl install mcrypt-1.0.3 \
     && docker-php-ext-enable mcrypt
 
-# enable some apache2 modules
+## enable some apache2 modules
 RUN a2enmod rewrite \
     && a2enmod setenvif \
     && a2enmod headers
@@ -67,3 +72,14 @@ RUN a2enmod rewrite \
 # enable ssl
 RUN a2ensite default-ssl
 
+# adjust user permissions (expecially on Linux host machines)
+RUN if [ ! "${USERID}" = "0" ] && [ ! "${USERID}" = "" ] ;\
+    then \
+        echo "Change user to ${USERID} and group to ${GROUPID}" && \
+        usermod --non-unique --uid ${USERID} www-data && \
+        groupmod --non-unique --gid ${GROUPID} www-data && \
+        chown -R www-data:www-data /var/www ; \
+    fi
+
+USER www-data:www-data
+WORKDIR /var/www

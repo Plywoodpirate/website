@@ -2,18 +2,18 @@ version: "3.8"
 services:
   webserver:
     build:
-      context: local
+      context: environments/local
       args:
         USERID: ${USERID}
         GROUPID: ${GROUPID}
     container_name: apache2-php-7.4
     volumes:
       - .:/var/www/html
-      # - ./local/server/development.conf:/etc/nginx/conf.d/default.conf
-      # - ./local/php:/usr/local/etc/php
-      # - ./local/sites-enabled:/etc/apache2/sites-enabled
-      - ./local/cron.d:/etc/cron.d
-      # - ./local/apache2:/etc/apache2
+      # - ./environments/local/server/development.conf:/etc/nginx/conf.d/default.conf
+      # - ./environments/local/php:/usr/local/etc/php
+      # - ./environments/local/sites-enabled:/etc/apache2/sites-enabled
+      - ./environments/local/cron.d:/etc/cron.d
+      # - ./environments/local/apache2:/etc/apache2
       # add the following line if your docker image is based on debian jessie
       # - etc/docker/sources.list:/etc/apt/sources.list
     links:
@@ -24,13 +24,16 @@ services:
       - "443:443"
     environment:
       TYPO3_CONTEXT: ${TYPO3_CONTEXT}
+      DOCKER_HOST: "unix:///var/run/docker.sock"
+    privileged: true
+    user: root
 
   database:
     image: mariadb:10.1
     container_name: mariadb-10.1
     # add this line if you want to auto load your database
     # volumes:
-    #   - ./local/database:/docker-entrypoint-initdb.d
+    #   - ./environments/local/database:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ${TYPO3__DB__Connections__Default__dbname}
