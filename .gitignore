@@ -525,6 +525,9 @@ modules.xml
 /public/typo3conf/l10n/
 /public/typo3conf/realurl_autoconf.php
 /public/typo3temp
+*.sql
+!ext_tables.sql
+LocalConfiguration.php
 
 ### Vuejs ###
 # Recommended template: Node.gitignore
