@@ -34,6 +34,15 @@ You `.env` file can set any environment variables for your project.
 Please consult the [wiki](../../wiki/Getting-started) for a detailed example
 of an .env file for TYPO3 projects.
 
+#### Mail Setup
+
+If you use the provided [.env sample configuration](../../wiki/Getting-started#full-example-for-a-env-file) from the wiki, please adjust it
+to your needs. You may want to register a free account at [mailtrap.io](https://mailtrap.io/), create an
+inbox for your project and enter the username and password in the .env file accordingly.
+
+You might choose not to use mailtrap.io at all. Just adjust the settings in the .env
+file to your needs.
+
 #### Prepare your docker to run the containers
 
 If your host machine is running Windows or Mac, ignore this step. This is for
