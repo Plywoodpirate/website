@@ -171,9 +171,9 @@ We thank all of our [contributors][github-contributors], who participated in thi
 This project is licensed under the [Apache 2.0 License](LICENSE.md).
 
 
-[github]: https://github.com/michagrandel
-[github-releases]: https://github.com/michagrandel/website-setup/releases
-[github-contributors]: https://github.com/michagrandel/website-setup/graphs/contributors
+[github]: https://github.com/Plywoodpirate
+[github-releases]: https://github.com/Plywoodpirate/website-setup/releases
+[github-contributors]: https://github.com/Plywoodpirate/website-setup/graphs/contributors
 [gitflow]: https://danielkummer.github.io/git-flow-cheatsheet/
 [gitflow-model]: http://nvie.com/posts/a-successful-git-branching-model/
 [code_of_conduct]: CODE_OF_CONDUCT.md
