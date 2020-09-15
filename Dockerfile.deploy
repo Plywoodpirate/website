@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/unicorn-developers/website-setup/typo3:base
+FROM docker.pkg.github.com/michagrandel/website-setup/website-base:0.1-apache
 USER root:root
 
 # install composer
@@ -14,7 +14,7 @@ COPY --chown=www-data:www-data environments/develop/cron.d/99-enable-scheduler-i
 
 # create symlinks
 RUN rm /etc/apache2/sites-enabled/000-default.conf \
-&& ln -s /etc/apache2/sites-available/001-website.conf /etc/apache2/sites-enabled/001-unicorn-developers.conf
+&& ln -s /etc/apache2/sites-available/001-website.conf /etc/apache2/sites-enabled/001-website.conf
 
 # switch user
 USER www-data:www-data
