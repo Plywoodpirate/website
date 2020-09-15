@@ -16,36 +16,31 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Build develop docker image and tag it accordingly for later upload
-      - name: Build develop-image
-        if: ${{ endsWith(github.ref, 'develop') }}
-        env:
-          REPOSITORY: ${{ github.repository }}
-        run: docker build -f Dockerfile.build -t docker.pkg.github.com/$REPOSITORY/website-base:apache-dev .
+      # Build docker image
+      - name: Build docker image
+        run: docker build -f Dockerfile.build -t website-base .
 
-      # Build master docker image and tag it accordingly for later upload
-      - name: Build release-image
-        if: ${{ endsWith(github.ref, 'master') }}
+      # Tag image for upload
+      - name: Tag docker image
         env:
           REPOSITORY: ${{ github.repository }}
-        run: docker build -f Dockerfile.build -t docker.pkg.github.com/$REPOSITORY/website-base:apache .
+          REFERENCE: ${{ github.ref }}
+        run: |
+          if [[ "$REFERENCE" == *develop ]] ; then branch="-dev"; else branch=""; fi
+          docker docker.pkg.github.com/$REPOSITORY/website-base:apache$branch .
 
       # Login to docker
-      - name: Login docker
+      - name: Login to docker
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker login docker.pkg.github.com --username michagrandel --password $TOKEN
 
-      # Push develop docker image to github
-      - name: Push develop-image
-        if: ${{ endsWith(github.ref, 'develop') }}
-        env:
-          REPOSITORY: ${{ github.repository }}
-        run: docker push docker.pkg.github.com/${{ github.repository }}/website-base:apache-dev
-
-      # Push master docker image to github
-      - name: Push release-image
+      # Push docker image to github
+      - name: Push docker image
         if: ${{ endsWith(github.ref, 'master') }}
         env:
           REPOSITORY: ${{ github.repository }}
-        run: docker push docker.pkg.github.com/${{ github.repository }}/website-base:apache
+          REFERENCE: ${{ github.ref }}
+        run: |
+          if [[ "$REFERENCE" == *develop ]] ; then branch="-dev"; else branch=""; fi
+          docker push docker.pkg.github.com/$REPOSITORY/website-base:apache$branch
