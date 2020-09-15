@@ -131,9 +131,9 @@ information about how to customize your setup.
 
 ## Built With
 
-* [composer](http://lxml.de/) \
+* [composer](http://getcomposer.org/) \
   *is a tool for dependency management in PHP.*
-* [docker](https://getcomposer.org/) \
+* [docker](https://www.docker.com/) \
   *is a tool to build and share containerized apps*
 * [Apache 2.4](https://httpd.apache.org/) \
   *is a free and open-source cross-platform web server software*
