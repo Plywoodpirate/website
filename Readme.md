@@ -6,7 +6,7 @@
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 ![Deploy docker image](https://github.com/Plywoodpirate/website/workflows/Deploy%20docker%20image/badge.svg)
 
-Template repository for website projects
+Template repository for website projects.
 
 ## Features
 
