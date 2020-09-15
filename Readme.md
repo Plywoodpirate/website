@@ -4,7 +4,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Plywoodpirate/website)
 ![Language](https://img.shields.io/github/languages/top/Plywoodpirate/website)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
-![Deploy docker image](https://github.com/michagrandel/website-setup/workflows/Deploy%20docker%20image/badge.svg)
+![Deploy docker image](https://github.com/Plywoodpirate/website/workflows/Deploy%20docker%20image/badge.svg)
 
 Template repository for website projects
 
@@ -105,7 +105,7 @@ on a regular basis.
 Example:
 
 ```
-FROM docker.pkg.github.com/michagrandel/website-setup/website-base:apache
+FROM docker.pkg.github.com/Plywoodpirate/website/website-base:apache
 
 # add your instructions here ...
 ```
@@ -115,7 +115,7 @@ If you want to use the development version of that image, add `-dev` after
 
 
 ```
-FROM docker.pkg.github.com/michagrandel/website-setup/website-base:apache-dev
+FROM docker.pkg.github.com/Plywoodpirate/website/website-base:apache-dev
 
 # add your instructions here ...
 ```
@@ -173,8 +173,8 @@ This project is licensed under the [GNU General Public License 2.0](LICENSE.md).
 
 
 [github]: https://github.com/Plywoodpirate
-[github-releases]: https://github.com/Plywoodpirate/website-setup/releases
-[github-contributors]: https://github.com/Plywoodpirate/website-setup/graphs/contributors
+[github-releases]: https://github.com/Plywoodpirate/website/releases
+[github-contributors]: https://github.com/Plywoodpirate/website/graphs/contributors
 [gitflow]: https://danielkummer.github.io/git-flow-cheatsheet/
 [gitflow-model]: http://nvie.com/posts/a-successful-git-branching-model/
 [code_of_conduct]: CODE_OF_CONDUCT.md
