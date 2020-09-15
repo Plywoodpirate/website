@@ -13,26 +13,31 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # update apt cache
-      - name: Update apt cache
-        run: sudo apt-get update
-
-      # Install docker
-      - name: Install docker
-        run: |
-          sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
-          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-          sudo apt-get update
-          sudo apt-get install docker-ce docker-ce-cli containerd.io
-          docker --version
+#      - name: Update apt cache
+#        run: sudo apt-get update
+#
+#      # Install docker
+#      - name: Install docker
+#        run: |
+#          sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+#          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add
+#          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+#          sudo apt-get update
+#          sudo apt-get install docker-ce docker-ce-cli containerd.io
+#          docker --version
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: get path
+        run: |
+          echo "$(pwd)"
+          ls
 
       # Runs a set of commands using the runners shell
       - name: Login docker
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-           docker login docker.pkg.github.com --username michagrandel --password $TOKEN
+          docker login docker.pkg.github.com --username michagrandel --password $TOKEN
 
