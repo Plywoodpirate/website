@@ -486,6 +486,7 @@ modules.xml
 
 # Build data
 /build/
+!environments/build
 
 # Composer PHAR
 /composer.phar
