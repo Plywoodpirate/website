@@ -1,10 +1,26 @@
+# Environment files
+.env
+
+# Git
 .git
 .gitkeep
 .gitignore
 .github
+
+# Jetbrains
 .idea
-.env
-Docker*
-*.md
+
+# Docker
 .dockerignore
-environments/local/*
+Dockerfile*
+docker-compose.yml
+
+# Project information
+Readme.md
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+LICENSE.md
+STYLEGUIDE.md
+
+environments/build/*
+environments/develop/*
