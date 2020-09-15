@@ -37,7 +37,6 @@ jobs:
 
       # Push docker image to github
       - name: Push docker image
-        if: ${{ endsWith(github.ref, 'master') }}
         env:
           REPOSITORY: ${{ github.repository }}
           REFERENCE: ${{ github.ref }}
