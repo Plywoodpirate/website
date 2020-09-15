@@ -91,7 +91,7 @@ composer install
 ```
 
 If your docker container started successfully, you can access your website
-at [localhost](localhost).
+at [localhost](http://localhost).
 
 ### How to use it in a extern project
 
