@@ -15,11 +15,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Build docker image and save it to file
+      - name: Build and tag docker image
         run: |
-          docker build -f Dockerfile.build -t typo3:base .
-          docker save -o typo3.tar typo3:base
-          ls
+          docker build -f Dockerfile.build -t docker.pkg.github.com/${{ github.repository }}/website-base .
+      # docker save -o typo3.tar typo3:base
 
       # Runs a set of commands using the runners shell
       - name: Login docker
