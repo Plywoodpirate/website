@@ -4,6 +4,7 @@
 ![Version](https://img.shields.io/github/v/release/michagrandel/website-setup)
 ![Language](https://img.shields.io/github/languages/top/michagrandel/website-setup)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
+![Deploy docker image](https://github.com/michagrandel/website-setup/workflows/Deploy%20docker%20image/badge.svg)
 
 Bootstrap package for website projects
 
@@ -26,13 +27,14 @@ It will provide you with a full development environment:
 
 ## Getting Started
 
-### Prepare to start
+### Prepare environments
 
-Before you can start, you might need to add an `.env` file in the project root. 
-You `.env` file can set any environment variables for your project.
+Before you can start, you might need adjust your environment. Do so by adding
+a global `.env` file to your project root. Each environment in 
+`/environments` can hold its own `.env` file, which might be really useful.
 
-Please consult the [wiki](../../wiki/Getting-started) for a detailed example
-of an .env file for TYPO3 projects.
+Please consult the [wiki](../../wiki/Getting-started) for a more detailed 
+description about these `.env` files and how to set them up.
 
 #### Mail Setup
 
@@ -74,9 +76,9 @@ There are more options (optional) to configure in your `.env` file.
 Please consult the [wiki](../../wiki/Getting-started) for further or 
 more defailed information. 
 
-### How to run
+### How to run a local development environment
 
-Use docker-compose to fire up your development environment:
+Use docker-compose to fire up your local development environment:
 
 ```
 docker-compose up
@@ -90,6 +92,32 @@ composer install
 
 If your docker container started successfully, you can access your website
 at [localhost](localhost).
+
+### How to use it in a extern project
+
+You might want to use this setup in a external project, maybe even a production
+environment.
+
+You can build your Dockerfile with the github package, which will be updated
+on a regular basis.
+
+Example:
+
+```
+FROM docker.pkg.github.com/michagrandel/website-setup/website-base:apache
+
+# add your instructions here ...
+```
+
+If you want to use the development version of that image, add `-dev` after
+`apache`, e.g.
+
+
+```
+FROM docker.pkg.github.com/michagrandel/website-setup/website-base:apache-dev
+
+# add your instructions here ...
+```
 
 ## Customize
 
