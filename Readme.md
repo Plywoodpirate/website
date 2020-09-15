@@ -1,4 +1,4 @@
-# Website Setup
+# Website Template
 
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Version](https://img.shields.io/github/v/release/Plywoodpirate/website)
@@ -6,7 +6,7 @@
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 ![Deploy docker image](https://github.com/michagrandel/website-setup/workflows/Deploy%20docker%20image/badge.svg)
 
-Bootstrap package for website projects
+Template repository for website projects
 
 ## Features
 
@@ -16,6 +16,7 @@ It will provide you with a full development environment:
 
 * environment based on docker, composer
 * ready to use for development
+* automated deployment workflows for github
 * provides Apache2, PHP 7.4, MariaDB 10.1 and mailcatcher
 * add **Community Files**
     * Readme.md
