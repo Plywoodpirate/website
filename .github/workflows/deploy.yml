@@ -21,7 +21,7 @@ jobs:
     steps:
       # update apt cache
       - name: Update apt cache
-          sudo apt-get update
+        run: sudo apt-get update
 
       # Install docker
       - name: Install docker
