@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  typo3-local:
+  typo3-develop-environment:
     env_file: environments/develop/.env
-    image: unicorn-developers/typo3:9.5
+    image: docker.pkg.github.com/unicorn-developers/website-setup/typo3:9.5-dev
     container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-typo3
     links:
       - mariadb10.1
@@ -10,26 +10,25 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    volumes:
+      - .:/var/www/html
+      - ./environments/build/sites-enabled:/etc/apache2/sites-enabled
+      - ./environments/build/cron.d:/etc/cron.d
     environment:
-      TYPO3_CONTEXT: ${TYPO3_CONTEXT}
       DOCKER_HOST: "unix:///var/run/docker.sock"
     privileged: true
     user: root
 
   build-apache2-php7.4:
+    env_file: environments/build/.env
     build:
       context: .
-      dockerfile: Dockerfile.local
+      dockerfile: Dockerfile.deploy
       args:
         USERID: ${USERID}
         GROUPID: ${GROUPID}
     image: ${NAMESPACE}/${COMPOSE_PROJECT_NAME}-typo3:base
-    container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-webserver
-    volumes:
-      - .:/var/www/html
-      # - ./environments/build/php:/usr/local/etc/php
-      - ./environments/build/sites-enabled:/etc/${WEBSERVER}/sites-enabled
-      - ./environments/build/cron.d:/etc/cron.d
+    container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-base
     links:
       - mariadb10.1
       - mailcatcher
@@ -37,7 +36,6 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      TYPO3_CONTEXT: ${TYPO3_CONTEXT}
       DOCKER_HOST: "unix:///var/run/docker.sock"
     privileged: true
     user: root
@@ -47,7 +45,7 @@ services:
     container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-database
     # add this line if you want to auto load your database
     # volumes:
-    #   - ./environments/local/database:/docker-entrypoint-initdb.d
+    #   - ./environments/build/database:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ${TYPO3__DB__Connections__Default__dbname}

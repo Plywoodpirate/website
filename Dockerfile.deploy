@@ -1,0 +1,34 @@
+FROM docker.pkg.github.com/unicorn-developers/website-setup/typo3:base
+USER root:root
+
+# install composer
+RUN touch composer-setup.php \
+    && curl -sS https://getcomposer.org/installer > composer-setup.php \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && composer --version
+
+# copy files
+COPY --chown=www-data:www-data . "/var/www/html/"
+COPY --chown=www-data:www-data environments/develop/sites-enabled/001-website.conf /etc/apache2/sites-available/
+COPY --chown=www-data:www-data environments/develop/cron.d/99-enable-scheduler-in-typo3 /etc/cron.d/
+
+# create symlinks
+RUN rm /etc/apache2/sites-enabled/000-default.conf \
+&& ln -s /etc/apache2/sites-available/001-website.conf /etc/apache2/sites-enabled/001-unicorn-developers.conf
+
+# switch user
+USER www-data:www-data
+
+# set permissions
+RUN chown -R www-data:www-data /var/www \
+
+# copy document root
+&& if [ ! -d "/var/www/html/public" ]; \
+    then \
+        mkdir "/var/www/html/public" ; \
+    fi \
+
+# install composer packages
+&& composer install && rm -r "/var/www/.composer"
+
+WORKDIR "/var/www/html"
