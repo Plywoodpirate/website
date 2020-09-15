@@ -1,4 +1,4 @@
-FROM docker.pkg.github.com/michagrandel/website-setup/website-base:0.1-apache
+FROM docker.pkg.github.com/michagrandel/website-setup/website-base:apache
 USER root:root
 
 # install composer

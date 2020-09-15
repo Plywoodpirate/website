@@ -1,0 +1,45 @@
+name: Deploy docker image
+
+on:
+  push:
+    branches: [ develop, master ]
+  pull_request:
+    branches: [ develop, master ]
+
+jobs:
+  # job to build and push a docker image
+  build-and-push:
+    name: Build and push
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Build docker image
+      - name: Build docker image
+        run: docker build -f Dockerfile.build -t website-base .
+
+      # Tag image for upload
+      - name: Tag docker image
+        env:
+          REPOSITORY: ${{ github.repository }}
+          REFERENCE: ${{ github.ref }}
+        run: |
+          if [[ "$REFERENCE" == *develop ]] ; then branch="-dev"; else branch=""; fi
+          docker tag website-base docker.pkg.github.com/$REPOSITORY/website-base:apache$branch
+
+      # Login to docker
+      - name: Login to docker
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker login docker.pkg.github.com --username michagrandel --password $TOKEN
+
+      # Push docker image to github
+      - name: Push docker image
+        env:
+          REPOSITORY: ${{ github.repository }}
+          REFERENCE: ${{ github.ref }}
+        run: |
+          if [[ "$REFERENCE" == *develop ]] ; then branch="-dev"; else branch=""; fi
+          docker push docker.pkg.github.com/$REPOSITORY/website-base:apache$branch
