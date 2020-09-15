@@ -1,6 +1,6 @@
 # Website Setup
 
-![License](https://img.shields.io/github/license/Plywoodpirate/website)
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 ![Version](https://img.shields.io/github/v/release/Plywoodpirate/website)
 ![Language](https://img.shields.io/github/languages/top/Plywoodpirate/website)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
@@ -168,7 +168,7 @@ We thank all of our [contributors][github-contributors], who participated in thi
 
 ## License
 
-This project is licensed under the [Apache 2.0 License](LICENSE.md).
+This project is licensed under the [GNU General Public License 2.0](LICENSE.md).
 
 
 [github]: https://github.com/Plywoodpirate
