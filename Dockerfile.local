@@ -1,0 +1,2 @@
+FROM docker.pkg.github.com/unicorn-developers/website-setup/typo3:base
+USER root:root

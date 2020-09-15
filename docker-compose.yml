@@ -1,20 +1,11 @@
 version: "3.8"
 services:
-  webserver:
-    build:
-      context: environments/local
-      args:
-        USERID: ${USERID}
-        GROUPID: ${GROUPID}
-    container_name: apache2-php-7.4
-    volumes:
-      - .:/var/www/html
-      # - ./environments/local/server/development.conf:/etc/nginx/conf.d/default.conf
-      # - ./environments/local/php:/usr/local/etc/php
-      - ./environments/local/sites-enabled:/etc/apache2/sites-enabled
-      - ./environments/local/cron.d:/etc/cron.d
+  typo3-local:
+    env_file: environments/develop/.env
+    image: unicorn-developers/typo3:9.5
+    container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-typo3
     links:
-      - database
+      - mariadb10.1
       - mailcatcher
     ports:
       - "80:80"
@@ -25,9 +16,35 @@ services:
     privileged: true
     user: root
 
-  database:
+  build-apache2-php7.4:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+      args:
+        USERID: ${USERID}
+        GROUPID: ${GROUPID}
+    image: ${NAMESPACE}/${COMPOSE_PROJECT_NAME}-typo3:base
+    container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-webserver
+    volumes:
+      - .:/var/www/html
+      # - ./environments/build/php:/usr/local/etc/php
+      - ./environments/build/sites-enabled:/etc/${WEBSERVER}/sites-enabled
+      - ./environments/build/cron.d:/etc/cron.d
+    links:
+      - mariadb10.1
+      - mailcatcher
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      TYPO3_CONTEXT: ${TYPO3_CONTEXT}
+      DOCKER_HOST: "unix:///var/run/docker.sock"
+    privileged: true
+    user: root
+
+  mariadb10.1:
     image: mariadb:10.1
-    container_name: mariadb-10.1
+    container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-database
     # add this line if you want to auto load your database
     # volumes:
     #   - ./environments/local/database:/docker-entrypoint-initdb.d
@@ -41,6 +58,6 @@ services:
 
   mailcatcher:
     image: sj26/mailcatcher
-    container_name: mailcatcher
+    container_name: ${NAMESPACE}-${COMPOSE_PROJECT_NAME}-mailcatcher
     ports:
       - "1080:1080"

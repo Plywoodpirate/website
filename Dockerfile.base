@@ -36,8 +36,8 @@ RUN pecl config-set php_ini "${PHP_INI_DIR}/php.ini" \
         # vim \
         libonig-dev \
         curl \
-        # git \
-        # unzip \
+        git \
+        unzip \
     && rm -rf /var/lib/apt/lists/* \
 
 # install php extensions
