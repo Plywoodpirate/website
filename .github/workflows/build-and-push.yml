@@ -27,7 +27,7 @@ jobs:
           REFERENCE: ${{ github.ref }}
         run: |
           if [[ "$REFERENCE" == *develop ]] ; then branch="-dev"; else branch=""; fi
-          docker docker.pkg.github.com/$REPOSITORY/website-base:apache$branch .
+          docker tag website-base docker.pkg.github.com/$REPOSITORY/website-base:apache$branch .
 
       # Login to docker
       - name: Login to docker
