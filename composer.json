@@ -10,7 +10,7 @@
     },
     {
       "type": "path",
-      "url": "packages/*"
+      "url": "./packages/*"
     }
   ],
   "config": {
@@ -45,7 +45,7 @@
   },
   "require-dev": {
     "friendsoftypo3/extension-builder": "^9.10",
-    "typo3/testing-framework": "^6.4"
+    "typo3/testing-framework": "^4.15"
   },
   "extra": {
     "typo3/cms": {
