@@ -22,7 +22,7 @@ jobs:
       # Install prerequisites
       - name: Install prerequesites
         run: |
-          apt-get install docker
+          sudo apt-get install docker
           docker --version
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
