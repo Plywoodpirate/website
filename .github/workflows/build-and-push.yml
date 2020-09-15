@@ -16,13 +16,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Build docker image and tag it accordingly for later upload
+      # Build develop docker image and tag it accordingly for later upload
       - name: Build develop-image
         if: ${{ endsWith(github.ref, 'develop') }}
         env:
           REPOSITORY: ${{ github.repository }}
         run: docker build -f Dockerfile.build -t docker.pkg.github.com/$REPOSITORY/website-base:apache-dev .
 
+      # Build master docker image and tag it accordingly for later upload
       - name: Build release-image
         if: ${{ endsWith(github.ref, 'master') }}
         env:
@@ -35,6 +36,16 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: docker login docker.pkg.github.com --username michagrandel --password $TOKEN
 
-      # Push docker image to github
-      - name: Push docker image
+      # Push develop docker image to github
+      - name: Push develop-image
+        if: ${{ endsWith(github.ref, 'develop') }}
+        env:
+          REPOSITORY: ${{ github.repository }}
+        run: docker push docker.pkg.github.com/${{ github.repository }}/website-base:apache-dev
+
+      # Push master docker image to github
+      - name: Push release-image
+        if: ${{ endsWith(github.ref, 'master') }}
+        env:
+          REPOSITORY: ${{ github.repository }}
         run: docker push docker.pkg.github.com/${{ github.repository }}/website-base:apache
