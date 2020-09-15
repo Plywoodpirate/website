@@ -1,8 +1,8 @@
 # Website Setup
 
-![License](https://img.shields.io/github/license/michagrandel/website-setup)
-![Version](https://img.shields.io/github/v/release/michagrandel/website-setup)
-![Language](https://img.shields.io/github/languages/top/michagrandel/website-setup)
+![License](https://img.shields.io/github/license/Plywoodpirate/website)
+![Version](https://img.shields.io/github/v/release/Plywoodpirate/website)
+![Language](https://img.shields.io/github/languages/top/Plywoodpirate/website)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 ![Deploy docker image](https://github.com/michagrandel/website-setup/workflows/Deploy%20docker%20image/badge.svg)
 
