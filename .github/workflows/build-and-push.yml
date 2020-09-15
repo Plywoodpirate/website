@@ -1,0 +1,31 @@
+name: Build and push docker image
+
+on:
+  push:
+    branches: [ develop, master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  # job to build and push a docker image
+  build-and-push:
+    name: Build and push
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Build docker image and tag it accordingly for later upload
+      - name: Build and tag docker image
+        run: docker build -f Dockerfile.build -t docker.pkg.github.com/${{ github.repository }}/website-base:apache .
+
+      # Login to docker
+      - name: Login docker
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: docker login docker.pkg.github.com --username michagrandel --password $TOKEN
+
+      # Push docker image to github
+      - name: Push docker image
+        run: docker push docker.pkg.github.com/${{ github.repository }}/website-base:apache
