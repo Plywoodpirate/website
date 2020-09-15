@@ -4,7 +4,7 @@ on:
   push:
     branches: [ develop, master ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop, master ]
 
 jobs:
   # job to build and push a docker image
@@ -18,7 +18,10 @@ jobs:
 
       # Build docker image and tag it accordingly for later upload
       - name: Build and tag docker image
-        run: docker build -f Dockerfile.build -t docker.pkg.github.com/${{ github.repository }}/website-base:apache .
+        env:
+          REPOSITORY: ${{ github.repository }}
+          BRANCH: ${{ github.ref }}
+        run: docker build -f Dockerfile.build -t docker.pkg.github.com/$REPOSITORY/website-base:apache-$BRANCH .
 
       # Login to docker
       - name: Login docker
